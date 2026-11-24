@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\TopupController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [TopupController::class, 'index'])->name('home');
+Route::get('/topup', [TopupController::class, 'index'])->name('topup.index');
+Route::post('/topup', [TopupController::class, 'store'])->name('topup.store');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
